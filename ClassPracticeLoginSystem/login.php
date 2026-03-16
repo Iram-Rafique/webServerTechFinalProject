@@ -68,7 +68,7 @@ $facebook_login_url = htmlspecialchars($facebook_login_url);
 </head>
 
 <body>
-
+<?php include 'navbar.php'; ?>
 <div class="form-container">
 
 <!-- EMAIL LOGIN -->

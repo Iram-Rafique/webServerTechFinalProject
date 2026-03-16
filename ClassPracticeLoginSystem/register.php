@@ -149,6 +149,7 @@ $showOTP = isset($_SESSION['otp_sent']);
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <?php include 'navbar.php'; ?>
 <div class="form-container">
 
     <!-- Registration Form -->

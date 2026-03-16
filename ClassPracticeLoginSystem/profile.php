@@ -115,7 +115,7 @@ function displayUsers($conn, $fetch)
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<?php include 'navbar.php'; ?>
 <div class="container">
 
     <div class="profile">
@@ -131,6 +131,13 @@ function displayUsers($conn, $fetch)
         <h3><?php echo $fetch['name']; ?></h3>
 
         <a href="update_profile.php" class="btn">Update Profile</a>
+      <?php if($fetch['user_type'] == 'user'){ ?>
+   <a href="shop.php" class="btn">Shop</a>
+<?php } ?>
+
+<?php if($fetch['user_type'] == 'admin' || $fetch['user_type'] == 'owner'){ ?>
+   <a href="admin_products.php" class="btn">Manage Products</a>
+<?php } ?>
         <a href="profile.php?logout=<?php echo $user_id; ?>" class="delete-btn">Logout</a>
 
         <!-- Hide delete button for owner -->
