@@ -37,7 +37,7 @@ echo "</form>";
 if(isset($_POST['add_admin']))  {
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $password = md5($_POST['password']);
+  $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $user_type = 'admin';
     // Insert new admin user into the database
     $sql = "INSERT INTO user_form (name, email, password, user_type) VALUES ('$name', '$email', '$password', '$user_type')";

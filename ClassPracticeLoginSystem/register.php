@@ -39,6 +39,7 @@ if(isset($_POST['submit'])) {
                     'time' => time()
                 ];
 
+
                 // Send OTP email (using your tested Gmail setup)
                 $to = $email;
                 $subject = "Email Verification Code";
@@ -54,6 +55,45 @@ if(isset($_POST['submit'])) {
             }
         }
     }
+}
+
+
+
+
+// --------------------
+// Resend OTP
+// --------------------
+if(isset($_POST['resend'])){
+
+    if(isset($_SESSION['reg_data'])){
+
+        // check 60 seconds
+        if(time() - $_SESSION['reg_data']['time'] < 60){
+            $message[] = "Please wait 1 minute before requesting a new OTP.";
+        }else{
+
+            $code = rand(111111,999999);
+
+            $_SESSION['reg_data']['code'] = $code;
+            $_SESSION['reg_data']['time'] = time();
+
+            $email = $_SESSION['reg_data']['email'];
+
+            $to = $email;
+            $subject = "Resend Verification Code";
+            $body = "Your new verification code is $code";
+            $headers = "From: ladybird840@gmail.com";
+
+            if(mail($to,$subject,$body,$headers)){
+                $message[] = "New OTP sent to your email.";
+            }else{
+                $message[] = "Failed to resend OTP.";
+            }
+
+        }
+
+    }
+
 }
 
 // --------------------
@@ -128,7 +168,7 @@ $showOTP = isset($_SESSION['otp_sent']);
     </form>
 
     <!-- OTP Form -->
-    <form action="" method="post" style="display: <?= $showOTP ? 'block' : 'none' ?>">
+    <!-- <form action="" method="post" style="display: <?= $showOTP ? 'block' : 'none' ?>">
         <h3>Step 2: Enter OTP to verify your email</h3>
         <?php if($showOTP && !empty($message)){
             foreach($message as $msg){
@@ -137,9 +177,63 @@ $showOTP = isset($_SESSION['otp_sent']);
         } ?>
         <input type="text" name="OTP" placeholder="Enter OTP" class="box" required>
         <input type="submit" name="check" value="Register now" class="btn">
+        <input type="submit" name="resend" value="Resend OTP" class="btn">
         <p>Already have an account? <a href="login.php">Login now</a></p>
-    </form>
+    </form> -->
+    <!-- OTP Form -->
+<form action="" method="post" style="display: <?= $showOTP ? 'block' : 'none' ?>">
+    <h3>Step 2: Enter OTP to verify your email</h3>
+
+    <?php if($showOTP && !empty($message)){
+        foreach($message as $msg){
+            echo '<div class="message">'.$msg.'</div>';
+        }
+    } ?>
+
+    <input type="text" name="OTP" placeholder="Enter OTP" class="box">
+
+    <input type="submit" name="check" value="Register now" class="btn">
+
+    <!-- Timer -->
+    <p id="timer" style="color:red;font-weight:bold;"></p>
+
+    <!-- Resend button hidden first -->
+<input type="submit" name="resend" id="resendBtn" value="Resend OTP" class="btn" style="display:none;">
+
+    <p>Already have an account? <a href="login.php">Login now</a></p>
+</form>
 
 </div>
+
+
+<script>
+
+let countdown = 60; // 1 minute
+let timerDisplay = document.getElementById("timer");
+let resendBtn = document.getElementById("resendBtn");
+
+if(timerDisplay){
+
+    resendBtn.style.display = "none";
+
+    let timer = setInterval(function(){
+
+        let minutes = Math.floor(countdown / 60);
+        let seconds = countdown % 60;
+
+        timerDisplay.innerHTML = "Resend OTP in " + minutes + ":" + (seconds < 10 ? "0" + seconds : seconds);
+
+        countdown--;
+
+        if(countdown < 0){
+            clearInterval(timer);
+            timerDisplay.innerHTML = "OTP expired. You can resend now.";
+            resendBtn.style.display = "block";
+        }
+
+    },1000);
+}
+
+</script>
 </body>
 </html>
