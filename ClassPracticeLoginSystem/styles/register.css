@@ -1,0 +1,133 @@
+/* ================= FORM CONTAINER ================= */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    flex-direction: column;
+    height:90vh;
+  
+}
+
+/* ================= FORM BASE ================= */
+.form {
+    width: 360px;
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #223856;
+}
+
+/* ================= INPUTS ================= */
+.input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.input:focus {
+    border-color: #38bdf8;
+    outline: none;
+}
+
+
+
+/* ================= REGISTER ================= */
+.register-form {
+    background: #ffffff;
+}
+
+/* ================= OTP ================= */
+.otp-form {
+    background: #f9fafb;
+}
+
+/* ================= TIMER ================= */
+.timer {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+}
+
+/* ================= MESSAGE ================= */
+.message {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* ================= LOGIN LINK ================= */
+.login-link {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+  
+}
+.login-link a {
+    text-decoration: none;
+    color: #223856;
+    font-weight: 500;
+}
+/* ================= BUTTON BASE ================= */
+.btn {
+    width: 100%;
+    padding: 11px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    border: none;
+}
+
+/* ================= PRIMARY ================= */
+.btn-primary {
+    background: #223856;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #1a2d46;
+}
+
+/* ================= SECONDARY ================= */
+.btn-secondary {
+    background: #f1f5f9;
+    color: #223856;
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+}
+
+/* ================= OUTLINE ================= */
+.btn-outline {
+    background: transparent;
+    border: 1px solid #223856;
+    color: #223856;
+}
+
+.btn-outline:hover {
+    background: #223856;
+    color: #ffffff;
+}
+
+/* ================= ACTIVE CLICK ================= */
+.btn:active {
+    transform: scale(0.97);
+}
