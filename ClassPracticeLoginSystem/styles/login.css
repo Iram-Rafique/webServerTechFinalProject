@@ -1,0 +1,125 @@
+/* ================= PAGE BACKGROUND ================= */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+    flex-direction: column;
+    padding: 20px;
+}
+
+/* ================= LOGIN FORM ================= */
+.login-form {
+    background: #ffffff;
+    padding: 30px 25px;
+    width: 350px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    text-align: center;
+}
+
+/* ================= TITLE ================= */
+.login-title {
+    margin-bottom: 20px;
+    color: #223856;
+}
+
+/* ================= INPUTS ================= */
+.login-input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.login-input:focus {
+    border-color: #38bdf8;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+}
+
+/* ================= BUTTON ================= */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 12px;
+    background: #223856;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.login-btn:hover {
+    background: #b7cae4;
+}
+
+/* ================= MESSAGE ================= */
+.login-message {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+/* ================= TEXT ================= */
+.login-text {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.login-text a {
+    color: #38bdf8;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* ================= SOCIAL LOGIN ================= */
+.social-login {
+    margin-top: 20px;
+    text-align: center;
+
+}
+
+.social-login p {
+    margin-bottom: 10px;
+}
+
+/* ================= SOCIAL BUTTONS ================= */
+.social-btn {
+    display: block;
+    width: 200px;
+    margin: 8px auto;
+    padding: 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+/* Google */
+.social-btn.google {
+    background: #db4437;
+}
+
+.social-btn.google:hover {
+    background: #c23321;
+}
+
+/* Facebook */
+.social-btn.facebook {
+    background: #1877f2;
+}
+
+.social-btn.facebook:hover {
+    background: #145dd1;
+}

@@ -3,10 +3,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 40px;
+    /* margin-top: 40px; */
     flex-direction: column;
-    height:90vh;
-  
+    height: 90vh;
+    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
 }
 
 /* ================= FORM BASE ================= */
@@ -15,7 +15,7 @@
     background: #ffffff;
     padding: 25px;
     border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
 }
 
 .form-title {
@@ -75,13 +75,15 @@
     text-align: center;
     margin-top: 10px;
     font-size: 14px;
-  
+
 }
+
 .login-link a {
     text-decoration: none;
     color: #223856;
     font-weight: 500;
 }
+
 /* ================= BUTTON BASE ================= */
 .btn {
     width: 100%;
@@ -102,7 +104,7 @@
 }
 
 .btn-primary:hover {
-    background: #1a2d46;
+    background: #b7cae4;
 }
 
 /* ================= SECONDARY ================= */
@@ -112,7 +114,7 @@
 }
 
 .btn-secondary:hover {
-    background: #e2e8f0;
+    background: #b7cae4;
 }
 
 /* ================= OUTLINE ================= */
@@ -130,4 +132,20 @@
 /* ================= ACTIVE CLICK ================= */
 .btn:active {
     transform: scale(0.97);
+}
+
+/* ================= LOGIN FORM ================= */
+.login-form {
+    background: #ffffff;
+}
+
+/* ================= SOCIAL BOX ================= */
+.social-box {
+    margin-top: 15px;
+    text-align: center;
+}
+
+/* Space between buttons */
+.social-box .btn {
+    margin-top: 8px;
 }

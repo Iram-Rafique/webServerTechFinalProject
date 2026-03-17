@@ -1,16 +1,19 @@
 <?php
 
 //-------------------------------------------------
-// 1. LOAD CONFIGURATION
+// LOAD CONFIGURATION
 //-------------------------------------------------
 
 include 'config.php';
 
 $message = [];
 
-
+// =====================
+// CSS
+// =============
+$page_css = "login.css";
 //-------------------------------------------------
-// 2. NORMAL LOGIN (EMAIL + PASSWORD)
+//  NORMAL LOGIN (EMAIL + PASSWORD)
 //-------------------------------------------------
 
 if(isset($_POST['submit']))
@@ -47,66 +50,49 @@ if(isset($_POST['submit']))
 
 
 //-------------------------------------------------
-// 3. GOOGLE LOGIN URL
+//  GOOGLE LOGIN URL
 //-------------------------------------------------
 
 $google_login_url = $google_client->createAuthUrl();
 
 //-------------------------------------------------
-// 4. FACEBOOK LOGIN URL
+//  FACEBOOK LOGIN URL
 //-------------------------------------------------
 
 $facebook_login_url = htmlspecialchars($facebook_login_url);
 
 ?>
+<?php include 'templates/header.php'; ?>
+<?php include 'templates/navbar.php'; ?>
+<div class="login-container">
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>Login</title>
-<link rel="stylesheet" href="style.css">
-</head>
+    <form class="login-form" method="post" autocomplete="off">
 
-<body>
-<?php include 'navbar.php'; ?>
-<div class="form-container">
+        <h2 class="login-title">Welcome Back</h2>
 
-<!-- EMAIL LOGIN -->
-<form method="post">
+        <?php if(!empty($message)): ?>
+            <?php foreach($message as $msg): ?>
+                <div class="login-message"><?= $msg ?></div>
+            <?php endforeach; ?>
+        <?php endif; ?>
 
-<h3>Login Now</h3>
+        <input type="email" name="email" placeholder="Enter email" class="login-input" required>
+        <input type="password" name="password" placeholder="Enter password" class="login-input" required>
 
-<?php
-if(!empty($message)){
-   foreach($message as $msg){
-      echo '<div class="message">'.$msg.'</div>';
-   }
-}
-?>
+        <input type="submit" name="submit" value="Login" class="login-btn">
 
-<input type="email" name="email" placeholder="Enter email" class="box" required>
-<input type="text" name="password" placeholder="Enter password" class="box" required>
+        <p class="login-text">
+            Don't have an account? <a href="register.php">Register</a>
+        </p>
 
-<input type="submit" name="submit" value="Login Now" class="btn">
+    </form>
 
-<p>Don't have an account? <a href="register.php">Register now</a></p>
+    <div class="social-login">
+        <p>Or continue with</p>
 
-</form>
+        <a href="<?= $google_login_url ?>" class="social-btn google">Google</a>
+        <a href="<?= $facebook_login_url ?>" class="social-btn facebook">Facebook</a>
+    </div>
 
-
-<!-- GOOGLE LOGIN -->
-<h3>Login with Google</h3>
-
-<a href="<?= $google_login_url ?>" class="btn">
-Login with Google
-</a>
-<!-- FACEBOOK LOGIN -->
-<h3>Login with Facebook</h3>
-
-<a href="<?= $facebook_login_url ?>" class="btn">
-Login with Facebook
-</a>
 </div>
-
-</body>
-</html>
+<?php include 'templates/footer.php'; ?>
