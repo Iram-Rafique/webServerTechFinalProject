@@ -1,68 +1,81 @@
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
+  
 }
 
-body{
-    background:#f4f6f8;
-}
-.navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 40px;
-   background:#223856;
+body {
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    
+    /* full screen height */
 }
 
-.nav-left .logo{
-    font-size:22px;
-    font-weight:bold;
-    color:white;
-    text-decoration:none;
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: #223856;
 }
 
-.nav-right{
-    display:flex;
-    align-items:center;
-    gap:20px;
+.nav-left .logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
 }
 
-.nav-right a{
-    text-decoration:none;
-    color:white;
-    font-size:15px;
-    transition:0.3s;
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-.nav-right a:hover{
-    color:#38bdf8;
-}
-.btn-nav{
-    background:#38bdf8;
-    padding:8px 15px;
-    border-radius:6px;
-    color:white !important;
+.nav-right a {
+    text-decoration: none;
+    color: white;
+    font-size: 15px;
+    transition: 0.3s;
 }
 
-.btn-nav:hover{
-    background:#0ea5e9;
-}
-.logout{
-    background:#ef4444;
-    padding:8px 15px;
-    border-radius:6px;
+.nav-right a:hover {
+    color: #38bdf8;
 }
 
-.logout:hover{
-    background:#dc2626;
+.btn-nav {
+    background: #38bdf8;
+    padding: 8px 15px;
+    border-radius: 6px;
+    color: white !important;
 }
-footer{
+
+.btn-nav:hover {
+    background: #0ea5e9;
+}
+
+.logout {
+    background: #ef4444;
+    padding: 8px 15px;
+    border-radius: 6px;
+}
+
+.logout:hover {
+    background: #dc2626;
+}
+
+footer {
     /* margin-top:40px; */
-    padding:20px;
-    text-align:center;
-    background:#223856;
-    color:white;
+    padding: 20px;
+    text-align: center;
+    background: #223856;
+    color: white;
     font-size: 13px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

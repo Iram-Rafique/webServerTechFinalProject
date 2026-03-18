@@ -1,62 +1,90 @@
 <?php
 include 'config.php';
-session_start();
+$page_css = "adminProducts.css";
+
 
 $user_id = $_SESSION['user_id'] ?? null;
 
-if(!$user_id){
+// 🔒 Redirect if not logged in
+if (!$user_id) {
    header('location:login.php');
    exit;
 }
 
-$user = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user_form WHERE id='$user_id'"));
+// 🔒 Prevent SQL injection
+$user_id = mysqli_real_escape_string($conn, $user_id);
 
-if($user['user_type'] != 'admin' && $user['user_type'] != 'owner'){
+// 🔍 Get user safely
+$result = mysqli_query($conn, "SELECT * FROM user_form WHERE id='$user_id'");
+$user = mysqli_fetch_assoc($result);
+
+// 🔒 Check role
+if ($user['user_type'] != 'admin' && $user['user_type'] != 'owner') {
    header('location:profile.php');
    exit;
 }
 
-$products = mysqli_query($conn,"SELECT * FROM product");
+// 📦 Get products
+$products = mysqli_query($conn, "SELECT * FROM product");
 ?>
+
+<?php include 'templates/header.php'; ?>
+<?php include 'templates/navbar.php'; ?>
 
 <h2>Product Management</h2>
 
-<a href="add_product.php">Add Product</a>
+<a href="add_product.php" class="add-product-btn">Add Product</a>
 
-<table border="1">
+<?php if (mysqli_num_rows($products) == 0) { ?>
+   <!-- 🧾 Empty state -->
+   <p>No products found.</p>
+<?php } else { ?>
 
-<tr>
-<th>ID</th>
-<th>Image</th>
-<th>Description</th>
-<th>Price</th>
-<th>Actions</th>
-</tr>
+<table>
+   <tr>
+      <th>ID</th>
+      <th>Image</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Actions</th>
+   </tr>
 
-<?php while($row = mysqli_fetch_assoc($products)){ ?>
+   <?php while ($row = mysqli_fetch_assoc($products)) { ?>
 
-<tr>
+      <tr>
 
-<td><?php echo $row['id']; ?></td>
+         <td><?php echo $row['id']; ?></td>
 
-<td>
-<img src="products_img/<?php echo $row['image']; ?>" width="60">
-</td>
+         <td>
+            <img src="products_img/<?php echo $row['image']; ?>" width="60">
+         </td>
 
-<td><?php echo $row['description']; ?></td>
+         <td><?php echo $row['description']; ?></td>
 
-<td>£<?php echo $row['price']; ?></td>
+         <td>£<?php echo $row['price']; ?></td>
 
-<td>
-<a href="edit_product.php?id=<?php echo $row['id']; ?>">Edit</a>
-<a href="delete_product.php?id=<?php echo $row['id']; ?>" 
-onclick="return confirm('Delete this product?')">
-Delete
-</a>
-</td>
+         <td>
+            <!-- ✏️ Edit (added confirmation optional) -->
+            <a href="edit_product.php?id=<?php echo $row['id']; ?>"
+               class="action-btn edit-btn"
+               onclick="return confirm('Edit this product?')">
+               Edit
+            </a>
 
-</tr>
+            <!-- 🗑 Delete -->
+            <a href="delete_product.php?id=<?php echo $row['id']; ?>"
+               class="action-btn delete-btn"
+               onclick="return confirm('Delete this product?')">
+               Delete
+            </a>
+         </td>
+
+      </tr>
+
+   <?php } ?>
+
+</table>
 
 <?php } ?>
 
-</table>
+<?php include 'templates/footer.php'; ?>

@@ -5,12 +5,12 @@
     align-items: center;
     /* margin-top: 40px; */
     flex-direction: column;
-    height: 90vh;
-    background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+min-height: 80vh;
 }
 
 /* ================= FORM BASE ================= */
 .form {
+    
     width: 360px;
     background: #ffffff;
     padding: 25px;

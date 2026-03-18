@@ -1,0 +1,112 @@
+/* PAGE TITLE */
+h2 {
+    margin: 30px 40px 10px;
+    color: #223856;
+}
+
+/* ADD PRODUCT BUTTON */
+.add-product-btn {
+width: 120px;
+    margin: 20px 40px 20px;
+    background: #223856;
+    color: white;
+    padding: 13px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 14px;
+    text-align: center;
+}
+
+.add-product-btn:hover {
+    background: #b7cae4;
+    color: #223856;
+}
+
+/* TABLE */
+table {
+    width: calc(100% - 80px);
+    margin: 0 40px 40px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* TABLE HEADER */
+table tr:first-child {
+    background: #223856;
+    color: white;
+}
+
+table th {
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+/* TABLE BODY */
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+/* IMAGE */
+table img {
+    border-radius: 6px;
+    object-fit: cover;
+}
+
+/* ROW HOVER */
+table tr:hover {
+    background: #f9fafb;
+}
+
+/* ACTION BUTTONS */
+.action-btn {
+   text-decoration: none;
+    color: white;
+     padding: 12px;
+    border-radius:6px;
+    cursor: pointer;
+    border: none;
+    margin-right: 5px;
+    display: inline-block;
+    width: 80px;
+    text-align: center;
+
+    
+}
+
+/* EDIT BUTTON */
+.edit-btn {
+    background: #223856;
+}
+
+.edit-btn:hover {
+    background: #b7cae4;
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+   background:#ef4444;
+}
+
+.delete-btn:hover {
+      background:#dc2626;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    table {
+        font-size: 12px;
+    }
+
+    .add-product-btn {
+        display: block;
+        width: fit-content;
+    }
+}

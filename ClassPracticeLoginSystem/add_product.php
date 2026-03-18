@@ -1,7 +1,6 @@
 <?php
 include 'config.php';
-session_start();
-
+$page_css = "addAdminProducts.css";
 $user_id = $_SESSION['user_id'] ?? null;
 
 if(!$user_id){
@@ -17,7 +16,6 @@ if($user['user_type'] != 'admin' && $user['user_type'] != 'owner'){
    exit;
 }
 
-
 /* ADD PRODUCT */
 if(isset($_POST['add_product'])){
 
@@ -26,54 +24,65 @@ if(isset($_POST['add_product'])){
 
    $image = $_FILES['image']['name'];
    $tmp_name = $_FILES['image']['tmp_name'];
+   $image_size = $_FILES['image']['size'];
 
-   if(!empty($image)){
+   $max_size = 2 * 1024 * 1024; // ✅ 2MB
 
-      move_uploaded_file($tmp_name,"products_img/".$image);
+   // Get file extension
+   $image_ext = strtolower(pathinfo($image, PATHINFO_EXTENSION));
+   $allowed_ext = ['jpg', 'jpeg', 'png'];
+
+   if(empty($image)){
+      echo "Please upload an image.";
+   }
+   elseif(!in_array($image_ext, $allowed_ext)){
+      echo "Only JPG, JPEG, PNG files are allowed.";
+   }
+   elseif($image_size > $max_size){
+      echo "Image is too large. Max size is 2MB.";
+   }
+   else{
+
+      // Optional: make unique filename (prevents overwrite)
+      $new_image_name = time() . '_' . $image;
+
+      move_uploaded_file($tmp_name, "products_img/" . $new_image_name);
 
       mysqli_query($conn,"INSERT INTO product (description,image,price)
-      VALUES ('$description','$image','$price')") or die('query failed');
+      VALUES ('$description','$new_image_name','$price')") or die('query failed');
 
       header('location:admin_products.php');
       exit;
-
-   }else{
-
-      echo "Please upload an image.";
-
    }
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-<title>Add Product</title>
-<link rel="stylesheet" href="style.css">
-</head>
+<?php include 'templates/header.php'; ?>
+<?php include 'templates/navbar.php'; ?>
 
-<body>
 
-<h2>Add New Product</h2>
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" class="product-form">
+<h2 class="form-title">Add New Product</h2>
+   <div class="form-group">
+      <label>Product Name / Description</label>
+      <input type="text" name="description" placeholder="Enter product name" required>
+   </div>
 
-<label>Product Name / Description</label><br>
-<input type="text" name="description" required><br><br>
+   <div class="form-group">
+      <label>Price (£)</label>
+      <input type="number" step="0.01" name="price" placeholder="0.00" required>
+   </div>
 
-<label>Price</label><br>
-<input type="number" step="0.01" name="price" required><br><br>
+   <div class="form-group">
+      <label>Product Image</label>
+      <input type="file" name="image" required>
+   </div>
 
-<label>Product Image</label><br>
-<input type="file" name="image" required><br><br>
-
-<input type="submit" name="add_product" value="Add Product">
+   <button type="submit" name="add_product" class="submit-btn">
+      Add Product
+   </button>
 
 </form>
 
-<br>
-
-<a href="admin_products.php">Back to Products</a>
-
-</body>
-</html>
+<?php include 'templates/footer.php'; ?>

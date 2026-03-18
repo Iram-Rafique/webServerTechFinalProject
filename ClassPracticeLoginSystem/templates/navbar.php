@@ -42,7 +42,7 @@ if($user_id){
     <a href="admin_products.php">Products</a>
 
     <?php if($user_type == 'owner'){ ?>
-        <a href="profile.php">Users</a>
+        <a href="admin_users.php">Users</a>
     <?php } ?>
 
     <a class="logout" href="profile.php?logout=<?php echo $user_id; ?>">Logout</a>

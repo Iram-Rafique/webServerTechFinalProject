@@ -1,0 +1,124 @@
+/* PAGE CONTAINER */
+h2 {
+    margin: 30px 40px 10px;
+    color: #223856;
+}
+
+/* FORM STYLING */
+#addUserForm {
+    margin: 20px 40px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+#addUserForm input,
+#addUserForm select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    flex: 1;
+    min-width: 180px;
+    font-size: 14px;
+}
+
+/* BUTTON */
+#addUserForm button {
+    background: #223856;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#addUserForm button:hover {
+  background: #b7cae4;
+}
+
+/* MESSAGE */
+#message {
+    margin: 0 40px 20px;
+    font-size: 14px;
+}
+
+/* TABLE */
+table {
+    width: calc(100% - 80px);
+    margin: 0 40px 40px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* TABLE HEADER */
+table thead {
+    background: #223856;
+    color: white;
+}
+
+table th {
+    padding: 12px;
+    text-align: left;
+    font-size: 14px;
+}
+
+/* TABLE BODY */
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+/* ROW HOVER */
+table tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* ACTION BUTTONS */
+.action-btn {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    text-decoration: none;
+    color: white;
+    margin-right: 5px;
+}
+
+
+.delete-btn {
+    background:#ef4444;
+    color: white;
+     padding:8px 15px;
+    border-radius:6px;
+    cursor: pointer;
+    border: none;
+}
+
+.delete-btn:hover {
+     background:#dc2626;
+}
+
+.delete-btn:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    #addUserForm {
+        flex-direction: column;
+    }
+
+    table {
+        font-size: 12px;
+    }
+}

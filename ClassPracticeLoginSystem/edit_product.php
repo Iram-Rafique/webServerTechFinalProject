@@ -1,6 +1,6 @@
 <?php
 include 'config.php';
-session_start();
+$page_css = "adminProducts.css";
 
 $user_id = $_SESSION['user_id'] ?? null;
 
@@ -51,7 +51,8 @@ if(isset($_POST['update_product'])){
     header("location:admin_products.php");
 }
 ?>
-
+<?php include 'templates/header.php'; ?>
+<?php include 'templates/navbar.php'; ?>
 <h2>Edit Product</h2>
 
 <form method="post" enctype="multipart/form-data">
@@ -70,3 +71,4 @@ if(isset($_POST['update_product'])){
 <input type="submit" name="update_product" value="Update Product">
 
 </form>
+<?php include 'templates/footer.php'; ?>

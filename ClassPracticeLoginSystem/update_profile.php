@@ -3,33 +3,44 @@
 include 'config.php';
 $page_css = "updateProfile.css";
 $user_id = $_SESSION['user_id'];
-
 if(isset($_POST['update_profile'])){
 
    $update_name = mysqli_real_escape_string($conn, $_POST['update_name']);
    $update_email = mysqli_real_escape_string($conn, $_POST['update_email']);
 
-   mysqli_query($conn, "UPDATE `user_form` 
-      SET name = '$update_name', email = '$update_email' 
-      WHERE id = '$user_id'") or die('query failed');
-
-   // 🔥 GET CURRENT USER DATA
+   // GET CURRENT USER DATA FIRST
    $select = mysqli_query($conn, "SELECT * FROM `user_form` WHERE id = '$user_id'") or die('query failed');
    $fetch = mysqli_fetch_assoc($select);
 
-   // 🔐 PASSWORD INPUTS (NO HASH YET)
+   // ================= NAME / EMAIL =================
+   if($update_name !== $fetch['name'] || $update_email !== $fetch['email']){
+
+      mysqli_query($conn, "UPDATE `user_form` 
+         SET name = '$update_name', email = '$update_email' 
+         WHERE id = '$user_id'") or die('query failed');
+
+      $message[] = 'Profile info updated successfully!';
+   } else {
+      $message[] = 'No changes made to name or email.';
+   }
+
+   // ================= PASSWORD =================
    $current_pass = $_POST['update_pass'];
    $new_pass = $_POST['new_pass'];
    $confirm_pass = $_POST['confirm_pass'];
 
-   // 🔥 CHECK IF USER WANTS TO CHANGE PASSWORD
    if(!empty($current_pass) || !empty($new_pass) || !empty($confirm_pass)){
 
-      if(!password_verify($current_pass, $fetch['password'])){
+      if(empty($current_pass) || empty($new_pass) || empty($confirm_pass)){
+         $message[] = 'Please fill all password fields!';
+      }
+      elseif(!password_verify($current_pass, $fetch['password'])){
          $message[] = 'Old password not matched!';
-      }elseif($new_pass !== $confirm_pass){
+      }
+      elseif($new_pass !== $confirm_pass){
          $message[] = 'Confirm password not matched!';
-      }else{
+      }
+      else{
          $hashed_password = password_hash($new_pass, PASSWORD_DEFAULT);
 
          mysqli_query($conn, "UPDATE `user_form` 
@@ -41,15 +52,17 @@ if(isset($_POST['update_profile'])){
    }
 
    // ================= IMAGE =================
-   $update_image = $_FILES['update_image']['name'];
-   $update_image_size = $_FILES['update_image']['size'];
-   $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
-   $update_image_folder = 'uploaded_img/'.$update_image;
+   if(isset($_FILES['update_image']) && !empty($_FILES['update_image']['name'])){
 
-   if(!empty($update_image)){
+      $update_image = $_FILES['update_image']['name'];
+      $update_image_size = $_FILES['update_image']['size'];
+      $update_image_tmp_name = $_FILES['update_image']['tmp_name'];
+      $update_image_folder = 'uploaded_img/'.$update_image;
+
       if($update_image_size > 2000000){
          $message[] = 'Image is too large!';
-      }else{
+      } else {
+
          mysqli_query($conn, "UPDATE `user_form` 
             SET image = '$update_image' 
             WHERE id = '$user_id'") or die('query failed');
