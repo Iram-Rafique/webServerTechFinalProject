@@ -1,0 +1,101 @@
+/* Wrapper (keeps it separate from other pages) */
+.edit-product-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 120px;
+}
+
+/* Title */
+.edit-product-wrapper .form-title {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #223856;
+    font-weight: bold;
+}
+
+/* Form container */
+.edit-product-wrapper .product-form {
+    width: 480px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 14px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+ 
+}
+
+/* Form groups */
+.edit-product-wrapper .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Labels */
+.edit-product-wrapper .form-group label {
+    font-size: 14px;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #223856;
+}
+
+/* Inputs */
+.edit-product-wrapper .form-group input {
+    padding: 11px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.25s;
+}
+
+/* Focus */
+ .form-group input:focus {
+    border-color: #38bdf8;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+}
+
+/* Buttons container */
+.edit-product-wrapper .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* Submit button (matches navbar theme) */
+.edit-product-wrapper .submit-btn {
+    padding: 12px 18px;
+    background: #223856;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Hover */
+.edit-product-wrapper .submit-btn:hover {
+    background: #38bdf8;
+    color: #fff;
+}
+
+/* Cancel button */
+.edit-product-wrapper .cancel-btn {
+    text-decoration: none;
+    padding: 10px 16px;
+    background: #f3f4f6;
+    color: #333;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+/* Hover cancel */
+.edit-product-wrapper .cancel-btn:hover {
+    background: #e5e7eb;
+}

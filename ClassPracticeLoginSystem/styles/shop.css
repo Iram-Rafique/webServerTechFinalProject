@@ -1,0 +1,187 @@
+/* SHOP TITLE */
+h2 {
+    text-align: center;
+    margin: 30px 0 10px;
+    color: #223856;
+}
+
+/* PRODUCTS GRID */
+.products {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 25px;
+
+    max-width: 1000px;   /* control overall width */
+    margin: 0 auto;      /* centers it */
+
+    padding: 20px 40px;
+}
+
+/* PRODUCT CARD */
+.product {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+}
+
+/* PRODUCT IMAGE */
+.product img {
+    width: 100%;
+    max-width: 150px;
+    margin-bottom: 10px;
+}
+
+/* PRODUCT TEXT */
+.product h3 {
+    font-size: 16px;
+    margin: 10px 0;
+    color: #223856;
+}
+
+.product p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #38bdf8;
+    margin-bottom: 10px;
+}
+
+/* FORM */
+.product form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* INPUT */
+.product input[type="number"] {
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: center;
+}
+
+/* BUTTON */
+.product input[type="submit"] {
+    background: #38bdf8;
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.product input[type="submit"]:hover {
+    background: #0ea5e9;
+}
+
+/* ================= CHATBOT ================= */
+
+/* CHAT CONTAINER */
+.chatbot {
+    position: fixed;
+    bottom: 80px; /* above footer */
+    right: 20px;
+    width: 280px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    overflow: hidden;
+}
+
+/* HEADER */
+.chat-header {
+    background: #223856;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* CHAT BODY */
+.chat-body {
+    height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 14px;
+}
+
+/* FORM */
+#chat-form {
+    display: flex;
+    border-top: 1px solid #eee;
+}
+
+/* INPUT */
+#chat-input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    outline: none;
+}
+
+/* BUTTON */
+#chat-form button {
+    background: #38bdf8;
+    border: none;
+    color: white;
+    padding: 0 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#chat-form button:hover {
+    background: #0ea5e9;
+}
+
+@media (max-width: 768px) {
+    .products {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row */
+    }
+}
+
+/* 📱 Mobile */
+@media (max-width: 600px) {
+    .products {
+        grid-template-columns: 1fr; /* 1 per row */
+    }
+}
+/* CHAT BUTTON */
+#chat-toggle {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: #38bdf8;
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#chat-toggle:hover {
+    background: #0ea5e9;
+}
+
+/* CHATBOX (hidden by default) */
+.chatbot {
+    position: fixed;
+    bottom: 140px;
+    right: 20px;
+    width: 280px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    overflow: hidden;
+
+    display: none; /* 👈 hidden initially */
+}

@@ -31,7 +31,23 @@ if($user_id){
 
     <a href="profile.php">Profile</a>
     <a href="shop.php">Shop</a>
-    <a href="cart.php">Cart</a>
+  <?php
+$cart_count = 0;
+
+if(isset($_SESSION['user_id'])){
+   $uid = $_SESSION['user_id'];
+
+   $result = mysqli_query($conn,"SELECT SUM(product_quantity) as total 
+   FROM shopping_cart WHERE user_id='$uid'");
+
+   $data = mysqli_fetch_assoc($result);
+   $cart_count = $data['total'] ?? 0;
+}
+?>
+
+<a href="cart.php" class="cart-icon">
+   🛒 (<?php echo $cart_count; ?>)
+</a>
     <a class="logout" href="profile.php?logout=<?php echo $user_id; ?>">Logout</a>
 
 <?php } ?>

@@ -1,74 +1,108 @@
 <?php
 include 'config.php';
-$page_css = "adminProducts.css";
+$page_css = "editAdminProducts.css";
 
 $user_id = $_SESSION['user_id'] ?? null;
 
-if(!$user_id){
+if (!$user_id) {
     header('location:login.php');
     exit;
 }
 
 /* CHECK ROLE */
-$user = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user_form WHERE id='$user_id'"));
+$user_id = mysqli_real_escape_string($conn, $user_id);
+$user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM user_form WHERE id='$user_id'"));
 
-if($user['user_type'] != 'admin' && $user['user_type'] != 'owner'){
+if ($user['user_type'] != 'admin' && $user['user_type'] != 'owner') {
     header('location:profile.php');
     exit;
 }
 
-$id = $_GET['id'];
-
 /* GET PRODUCT */
-$product = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM product WHERE id='$id'"));
-
+$id = mysqli_real_escape_string($conn, $_GET['id']);
+$product = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM product WHERE id='$id'"));
 
 /* UPDATE PRODUCT */
-if(isset($_POST['update_product'])){
+if (isset($_POST['update_product'])) {
 
-    $description = $_POST['description'];
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
     $price = $_POST['price'];
 
-    /* IMAGE UPDATE */
-    if(!empty($_FILES['image']['name'])){
+    /* IMAGE SETTINGS */
+    $max_size = 2 * 1024 * 1024; // 2MB
+    $allowed_ext = ['jpg', 'jpeg', 'png'];
+
+    if (!empty($_FILES['image']['name'])) {
 
         $image = $_FILES['image']['name'];
         $tmp = $_FILES['image']['tmp_name'];
+        $size = $_FILES['image']['size'];
 
-        move_uploaded_file($tmp,"products_img/".$image);
+        $ext = strtolower(pathinfo($image, PATHINFO_EXTENSION));
 
-        mysqli_query($conn,"UPDATE product
-        SET description='$description', price='$price', image='$image'
-        WHERE id='$id'");
+        if (!in_array($ext, $allowed_ext)) {
+            echo "<p class='error-msg'>Only JPG, JPEG, PNG allowed.</p>";
+        } elseif ($size > $max_size) {
+            echo "<p class='error-msg'>Image too large (max 2MB).</p>";
+        } else {
 
-    }else{
+            $new_name = time() . '_' . $image;
 
-        mysqli_query($conn,"UPDATE product
+            move_uploaded_file($tmp, "products_img/" . $new_name);
+
+            mysqli_query($conn, "UPDATE product
+            SET description='$description', price='$price', image='$new_name'
+            WHERE id='$id'");
+
+            header("location:admin_products.php");
+            exit;
+        }
+    } else {
+
+        mysqli_query($conn, "UPDATE product
         SET description='$description', price='$price'
         WHERE id='$id'");
-    }
 
-    header("location:admin_products.php");
+        header("location:admin_products.php");
+        exit;
+    }
 }
 ?>
 <?php include 'templates/header.php'; ?>
 <?php include 'templates/navbar.php'; ?>
-<h2>Edit Product</h2>
+<div class="edit-product-wrapper">
+    <h2 class="form-title">Edit Product</h2>
 
-<form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" class="product-form">
 
-<label>Product Name</label>
-<input type="text" name="description" value="<?php echo $product['description']; ?>" required>
+        <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" name="description"
+                value="<?php echo $product['description']; ?>" required>
+        </div>
 
-<label>Price</label>
-<input type="number" step="0.01" name="price" value="<?php echo $product['price']; ?>" required>
+        <div class="form-group">
+            <label>Price (£)</label>
+            <input type="number" step="0.01" name="price"
+                value="<?php echo $product['price']; ?>" required>
+        </div>
 
-<label>Image</label>
-<input type="file" name="image">
+        <div class="form-group">
+            <label>Image</label>
+            <input type="file" name="image" accept="image/*">
+        </div>
 
-<br><br>
+        <div class="form-actions">
+            <button type="submit" name="update_product" class="submit-btn">
+                Update Product
+            </button>
 
-<input type="submit" name="update_product" value="Update Product">
+            <!-- ✅ FIXED cancel -->
+            <a href="admin_products.php" class="cancel-btn">
+                Cancel
+            </a>
+        </div>
 
-</form>
+    </form>
+</div>
 <?php include 'templates/footer.php'; ?>
