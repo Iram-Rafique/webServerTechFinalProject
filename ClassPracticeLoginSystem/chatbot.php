@@ -3,92 +3,97 @@ include 'config.php';
 
 // Get message safely
 $message = strtolower(trim($_POST['message'] ?? ''));
-$message = mysqli_real_escape_string($conn, $message);
 
 /* =========================
-   1. GREETING ✅ NEW
+   HELP
 ========================= */
-if ($message == 'hi' || $message == 'hello') {
-
+if ($message == '' || $message == 'help') {
     echo "
-    👋 Hello!
-    <br><br>
-    🤖 How can I help you?
-    <br><br>
-    🔍 Try:
-    <br>• iphone
-    <br>• price iphone
-    <br>• pixel
+    🤖 <strong>How can I help?</strong><br><br>
+    Try:<br>
+    • iphone<br>
+    • price iphone<br>
+    • samsung
     ";
 }
 
-
 /* =========================
-   2. HELP
+   GREETINGS
 ========================= */
-elseif ($message == '' || $message == 'help') {
-
+elseif (
+    strpos($message, 'hi') !== false ||
+    strpos($message, 'hello') !== false ||
+    strpos($message, 'hey') !== false
+) {
     echo "
-    🤖 Try:
-    <br>• iphone
-    <br>• price iphone
-    <br>• samsung
+    👋 Hello!<br><br>
+    What are you looking for today?<br>
+    Try:<br>
+    • iphone<br>
+    • price iphone<br>
+    • samsung
     ";
 }
 
-
 /* =========================
-   3. ASK PRICE
+   ASK PRICE
 ========================= */
 elseif (strpos($message, 'price') !== false) {
 
     $product_name = trim(str_replace('price', '', $message));
 
-    $result = mysqli_query($conn, "
+    $stmt = $conn->prepare("
         SELECT description, price 
         FROM product 
-        WHERE description LIKE '%$product_name%' 
+        WHERE description LIKE ? 
         LIMIT 1
     ");
 
-    if ($row = mysqli_fetch_assoc($result)) {
+    $search = "%$product_name%";
+    $stmt->bind_param("s", $search);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-        echo "💰 {$row['description']} costs £{$row['price']}";
-
+    if ($row = $result->fetch_assoc()) {
+        echo "💰 <strong>{$row['description']}</strong><br>Price: £{$row['price']}";
     } else {
         echo "😢 Product not found";
     }
 }
 
-
 /* =========================
-   4. SEARCH PRODUCTS
+   SEARCH PRODUCTS
 ========================= */
 else {
 
-    $result = mysqli_query($conn, "
-        SELECT description, price, image 
+    $stmt = $conn->prepare("
+        SELECT description, price 
         FROM product 
-        WHERE description LIKE '%$message%' 
+        WHERE description LIKE ? 
         LIMIT 5
     ");
 
-    if (mysqli_num_rows($result)) {
+    $search = "%$message%";
+    $stmt->bind_param("s", $search);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-        echo "🔍 Results:<br><br>";
+    if ($result->num_rows > 0) {
 
-        while ($row = mysqli_fetch_assoc($result)) {
+        echo "🔍 <strong>Results for '$message'</strong><br><br>";
 
-            echo "
-            <div>
-                📱 {$row['description']} - £{$row['price']}<br>
-                <img src='images/{$row['image']}' width='80'><br><br>
-            </div>
-            ";
+        while ($row = $result->fetch_assoc()) {
+            echo "• {$row['description']} - <strong>£{$row['price']}</strong><br>";
         }
 
     } else {
-        echo "😢 No products found";
+        echo "
+        😢 No products found<br><br>
+        Try:<br>
+        • iphone<br>
+        • samsung<br>
+        • price iphone
+        ";
     }
 }
 ?>

@@ -1,6 +1,6 @@
 <?php
 include 'config.php';
-
+$page_css = "cart.css";
 
 $user_id = $_SESSION['user_id'];
 
@@ -55,14 +55,14 @@ while($row = mysqli_fetch_assoc($cart)){
 
       <button name="update_qty" value="1" onclick="this.form.quantity.stepUp()">+</button>
    </form>
-
+<div class="cart-actions">
    <p><strong>subtotal: £<?php echo $subtotal; ?></strong></p>
-
-   <!-- Remove -->
+<!-- remove -->
    <form method="post">
       <input type="hidden" name="cart_id" value="<?php echo $row['id']; ?>">
       <button name="remove_item" class="remove-btn">Remove</button>
    </form>
+</div>
 
 </div>
 
@@ -72,3 +72,4 @@ while($row = mysqli_fetch_assoc($cart)){
 
 <!-- TOTAL -->
 <h3 class="cart-total">Total: £<?php echo $total; ?></h3>
+<?php include 'templates/footer.php'; ?>

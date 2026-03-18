@@ -61,24 +61,18 @@ min-height: 80vh;
 }
 
 /* ================= PRIMARY ================= */
-.btn.primary {
+.btn.secondary,
+ .btn.primary {
     background: #223856;
     color: #fff;
 }
 
-.btn.primary:hover {
+.btn.secondary:hover,
+ .btn.primary:hover {
     background: #b7cae4;
 }
 
-/* ================= SECONDARY ================= */
-.btn.secondary {
-    background: #e2e8f0;
-    color: #223856;
-}
 
-.btn.secondary:hover {
-    background: #b7cae4;
-}
 
 /* ================= DANGER ================= */
 .btn.danger {

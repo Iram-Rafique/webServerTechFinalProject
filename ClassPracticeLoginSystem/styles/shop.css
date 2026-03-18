@@ -8,11 +8,13 @@ h2 {
 /* PRODUCTS GRID */
 .products {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 
-    max-width: 1000px;   /* control overall width */
-    margin: 0 auto;      /* centers it */
+    max-width: 1000px;
+    /* control overall width */
+    margin: 0 auto;
+    /* centers it */
 
     padding: 20px 40px;
 }
@@ -23,7 +25,7 @@ h2 {
     border-radius: 12px;
     padding: 15px;
     text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: 0.3s;
 }
 
@@ -40,15 +42,13 @@ h2 {
 
 /* PRODUCT TEXT */
 .product h3 {
-    font-size: 16px;
+    font-size: 18px;
     margin: 10px 0;
-    color: #223856;
+
 }
 
 .product p {
-    font-size: 18px;
-    font-weight: bold;
-    color: #38bdf8;
+    font-size: 16px;
     margin-bottom: 10px;
 }
 
@@ -69,7 +69,7 @@ h2 {
 
 /* BUTTON */
 .product input[type="submit"] {
-    background: #38bdf8;
+    background: #223856;
     border: none;
     padding: 8px;
     border-radius: 6px;
@@ -79,7 +79,8 @@ h2 {
 }
 
 .product input[type="submit"]:hover {
-    background: #0ea5e9;
+    background: #b7cae4;
+
 }
 
 /* ================= CHATBOT ================= */
@@ -87,12 +88,13 @@ h2 {
 /* CHAT CONTAINER */
 .chatbot {
     position: fixed;
-    bottom: 80px; /* above footer */
+    bottom: 80px;
+    /* above footer */
     right: 20px;
     width: 280px;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
 
@@ -129,7 +131,7 @@ h2 {
 
 /* BUTTON */
 #chat-form button {
-    background: #38bdf8;
+    background: #223856;
     border: none;
     color: white;
     padding: 0 15px;
@@ -138,38 +140,43 @@ h2 {
 }
 
 #chat-form button:hover {
-    background: #0ea5e9;
+    background: #b7cae4;
+
 }
 
 @media (max-width: 768px) {
     .products {
-        grid-template-columns: repeat(2, 1fr); /* 2 per row */
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 per row */
     }
 }
 
-/* 📱 Mobile */
-@media (max-width: 600px) {
+/*Mobile */
+@media (max-width:768px) {
     .products {
-        grid-template-columns: 1fr; /* 1 per row */
+        grid-template-columns: 1fr;
+        /* 1 per row */
     }
 }
+
 /* CHAT BUTTON */
 #chat-toggle {
     position: fixed;
     bottom: 80px;
     right: 20px;
-    background: #38bdf8;
+    background: #223856;
     color: white;
     border: none;
     padding: 15px;
     border-radius: 50%;
     font-size: 20px;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 #chat-toggle:hover {
-    background: #0ea5e9;
+    background: #b7cae4;
+
 }
 
 /* CHATBOX (hidden by default) */
@@ -180,8 +187,9 @@ h2 {
     width: 280px;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
     overflow: hidden;
 
-    display: none; /* 👈 hidden initially */
+    display: none;
+    /* 👈 hidden initially */
 }
