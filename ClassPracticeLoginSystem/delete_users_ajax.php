@@ -61,17 +61,17 @@ foreach ($ids as $id) {
 
     $target_role = $target['user_type'];
 
-    // ❌ NEVER delete owner
+    //  NEVER delete owner
     if ($target_role === 'owner') {
         continue;
     }
 
-    // ❌ ADMIN cannot delete admin
+    //  ADMIN cannot delete admin
     if ($current['user_type'] === 'admin' && $target_role === 'admin') {
         continue;
     }
 
-    // ✅ DELETE USER
+    // DELETE USER
     mysqli_query($conn, "DELETE FROM user_form WHERE id='$id'");
     $deleted++;
 }

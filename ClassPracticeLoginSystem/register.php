@@ -4,19 +4,19 @@ include 'config.php';
 $page_css = "register.css";
 $message = [];
 
-// Load messages from session (PRG pattern)
+// Load messages from session 
 if(isset($_SESSION['message'])){
     $message = $_SESSION['message'];
     unset($_SESSION['message']);
 }
 
-// Helper: clear registration session
+//  clear registration session
 function clearReg(){
     unset($_SESSION['reg_data'], $_SESSION['otp_sent']);
 }
 
 // --------------------
-// STEP 1: REGISTER
+//  REGISTER
 // --------------------
 if(isset($_POST['submit'])){
 
@@ -75,7 +75,7 @@ if(isset($_POST['submit'])){
 }
 
 // --------------------
-// STEP 2: VERIFY OTP
+//  VERIFY OTP
 // --------------------
 if(isset($_POST['check'])){
 

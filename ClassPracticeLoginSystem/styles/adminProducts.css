@@ -64,6 +64,9 @@ table img {
 table tr:hover {
     background: #f9fafb;
 }
+table tr:first-child:hover {
+     background: #b7cae4;
+}
 
 /* ACTION BUTTONS */
 .action-btn {

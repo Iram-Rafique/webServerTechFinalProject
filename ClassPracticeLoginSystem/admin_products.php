@@ -5,26 +5,26 @@ $page_css = "adminProducts.css";
 
 $user_id = $_SESSION['user_id'] ?? null;
 
-// 🔒 Redirect if not logged in
+//  Redirect if not logged in
 if (!$user_id) {
    header('location:login.php');
    exit;
 }
 
-// 🔒 Prevent SQL injection
+//  Prevent SQL injection
 $user_id = mysqli_real_escape_string($conn, $user_id);
 
-// 🔍 Get user safely
+// Get user safely
 $result = mysqli_query($conn, "SELECT * FROM user_form WHERE id='$user_id'");
 $user = mysqli_fetch_assoc($result);
 
-// 🔒 Check role
+//  Check role
 if ($user['user_type'] != 'admin' && $user['user_type'] != 'owner') {
    header('location:profile.php');
    exit;
 }
 
-// 📦 Get products
+//  Get products
 $products = mysqli_query($conn, "SELECT * FROM product");
 ?>
 
@@ -36,7 +36,7 @@ $products = mysqli_query($conn, "SELECT * FROM product");
 <a href="add_product.php" class="add-product-btn">Add Product</a>
 
 <?php if (mysqli_num_rows($products) == 0) { ?>
-   <!-- 🧾 Empty state -->
+   <!-- Empty state -->
    <p>No products found.</p>
 <?php } else { ?>
 
@@ -64,14 +64,14 @@ $products = mysqli_query($conn, "SELECT * FROM product");
          <td>£<?php echo $row['price']; ?></td>
 
          <td>
-            <!-- ✏️ Edit (added confirmation optional) -->
+            <!--  Edit (added confirmation optional) -->
             <a href="edit_product.php?id=<?php echo $row['id']; ?>"
                class="action-btn edit-btn"
                onclick="return confirm('Edit this product?')">
                Edit
             </a>
 
-            <!-- 🗑 Delete -->
+            <!--  Delete -->
             <a href="delete_product.php?id=<?php echo $row['id']; ?>"
                class="action-btn delete-btn"
                onclick="return confirm('Delete this product?')">

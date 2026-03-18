@@ -22,7 +22,7 @@ if ($current['user_type'] !== 'admin' && $current['user_type'] !== 'owner') {
 <?php include 'templates/navbar.php'; ?>
 <h2>Manage Users</h2>
 
-<!-- ✅ ADD USER FORM -->
+<!-- ADD USER FORM -->
 <form id="addUserForm">
     <input type="text" name="name" placeholder="Name" required>
     <input type="email" name="email" placeholder="Email" required>
@@ -31,7 +31,7 @@ if ($current['user_type'] !== 'admin' && $current['user_type'] !== 'owner') {
     <select name="user_type">
         <option value="user">User</option>
 
-        <!-- 👑 ONLY OWNER CAN SEE ADMIN OPTION -->
+        <!--  ONLY OWNER CAN SEE ADMIN OPTION -->
         <?php if ($current['user_type'] === 'owner') { ?>
             <option value="admin">Admin</option>
         <?php } ?>
@@ -58,7 +58,7 @@ if ($current['user_type'] !== 'admin' && $current['user_type'] !== 'owner') {
 
 <script>
 
-// 🔄 LOAD USERS
+//  LOAD USERS
 function loadUsers() {
     fetch("fetch_users.php")
         .then(res => res.json())
@@ -75,14 +75,14 @@ function loadUsers() {
 let currentUserId = "<?php echo $user_id; ?>";
 let currentUserType = "<?php echo $current['user_type']; ?>";
 
-// 🔒 Admin rules
+// Admin rules
 if (currentUserType === "admin") {
     if (user.user_type === "admin" || user.user_type === "owner") {
         disableDelete = "disabled";
     }
 }
 
-// 🔒 Owner cannot delete themselves
+// Owner cannot delete themselves
 if (currentUserType === "owner") {
     if (user.id == currentUserId) {
         disableDelete = "disabled";
@@ -110,7 +110,7 @@ if (currentUserType === "owner") {
         });
 }
 
-// ➕ ADD USER
+//  ADD USER
 document.getElementById("addUserForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
@@ -132,7 +132,7 @@ document.getElementById("addUserForm").addEventListener("submit", function(e) {
     });
 });
 
-// ❌ DELETE SINGLE USER
+// DELETE SINGLE USER
 function deleteUser(id) {
 
     if (!confirm("Are you sure you want to delete this user?")) return;
@@ -151,7 +151,7 @@ function deleteUser(id) {
     });
 }
 
-// 🚀 INITIAL LOAD
+// INITIAL LOAD
 loadUsers();
 
 </script>

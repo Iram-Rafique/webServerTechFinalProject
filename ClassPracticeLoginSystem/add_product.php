@@ -26,7 +26,7 @@ if (isset($_POST['add_product'])) {
    $tmp_name = $_FILES['image']['tmp_name'];
    $image_size = $_FILES['image']['size'];
 
-   $max_size = 2 * 1024 * 1024; // ✅ 2MB
+   $max_size = 2 * 1024 * 1024; //  2MB
 
    // Get file extension
    $image_ext = strtolower(pathinfo($image, PATHINFO_EXTENSION));
@@ -40,7 +40,7 @@ if (isset($_POST['add_product'])) {
       echo "Image is too large. Max size is 2MB.";
    } else {
 
-      // Optional: make unique filename (prevents overwrite)
+      //  make unique filename (prevents overwrite)
       $new_image_name = time() . '_' . $image;
 
       move_uploaded_file($tmp_name, "products_img/" . $new_image_name);

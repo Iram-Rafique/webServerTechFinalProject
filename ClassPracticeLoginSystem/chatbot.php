@@ -9,7 +9,7 @@ $message = strtolower(trim($_POST['message'] ?? ''));
 ========================= */
 if ($message == '' || $message == 'help') {
     echo "
-    🤖 <strong>How can I help?</strong><br><br>
+     <strong>How can I help?</strong><br><br>
     Try:<br>
     • iphone<br>
     • price iphone<br>
@@ -26,7 +26,7 @@ elseif (
     strpos($message, 'hey') !== false
 ) {
     echo "
-    👋 Hello!<br><br>
+     Hello!<br><br>
     What are you looking for today?<br>
     Try:<br>
     • iphone<br>
@@ -55,9 +55,9 @@ elseif (strpos($message, 'price') !== false) {
     $result = $stmt->get_result();
 
     if ($row = $result->fetch_assoc()) {
-        echo "💰 <strong>{$row['description']}</strong><br>Price: £{$row['price']}";
+        echo " <strong>{$row['description']}</strong><br>Price: £{$row['price']}";
     } else {
-        echo "😢 Product not found";
+        echo " Product not found";
     }
 }
 
@@ -80,15 +80,15 @@ else {
 
     if ($result->num_rows > 0) {
 
-        echo "🔍 <strong>Results for '$message'</strong><br><br>";
+        echo " <strong>Results for '$message'</strong><br><br>";
 
         while ($row = $result->fetch_assoc()) {
-            echo "• {$row['description']} - <strong>£{$row['price']}</strong><br>";
+            echo " {$row['description']} - <strong>£{$row['price']}</strong><br>";
         }
 
     } else {
         echo "
-        😢 No products found<br><br>
+         No products found<br><br>
         Try:<br>
         • iphone<br>
         • samsung<br>

@@ -79,7 +79,7 @@ if (!in_array($user_type, $allowed_types)) {
     exit;
 }
 
-// ❌ ADMIN cannot create ADMIN
+//  ADMIN cannot create ADMIN
 if ($current['user_type'] === 'admin' && $user_type === 'admin') {
     echo json_encode([
         "status" => "error",

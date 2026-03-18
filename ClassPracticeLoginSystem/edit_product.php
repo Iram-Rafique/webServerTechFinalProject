@@ -97,7 +97,7 @@ if (isset($_POST['update_product'])) {
                 Update Product
             </button>
 
-            <!-- ✅ FIXED cancel -->
+            <!--  FIXED cancel -->
             <a href="admin_products.php" class="cancel-btn">
                 Cancel
             </a>

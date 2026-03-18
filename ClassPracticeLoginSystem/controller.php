@@ -1,14 +1,10 @@
 <?php
 
-//-------------------------------------------------
-// 1. LOAD CONFIGURATION
-//-------------------------------------------------
-
 include 'config.php';
 
 
 //-------------------------------------------------
-// 2. DETECT LOGIN PROVIDER
+//  DETECT LOGIN PROVIDER
 //-------------------------------------------------
 
 if(isset($_GET['state'])){
@@ -24,7 +20,7 @@ else{
 
 
 //-------------------------------------------------
-// 3. GOOGLE LOGIN
+//  GOOGLE LOGIN
 //-------------------------------------------------
 
 if($provider === "google"){
@@ -61,7 +57,7 @@ if($provider === "google"){
 
 
 //-------------------------------------------------
-// 4. FACEBOOK LOGIN
+// FACEBOOK LOGIN
 //-------------------------------------------------
 
 if($provider === "facebook"){
@@ -98,7 +94,7 @@ if($provider === "facebook"){
 
 
 //-------------------------------------------------
-// 5. CHECK IF USER EXISTS
+//  CHECK IF USER EXISTS
 //-------------------------------------------------
 
 $stmt = $conn->prepare("SELECT id FROM user_form WHERE email=?");
@@ -122,7 +118,7 @@ if($result->num_rows > 0){
 
 
 //-------------------------------------------------
-// 6. REDIRECT USER
+// REDIRECT USER
 //-------------------------------------------------
 
 header("Location: profile.php");
