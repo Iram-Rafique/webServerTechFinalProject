@@ -11,7 +11,7 @@ min-height: 80vh;
 /* ================= FORM BASE ================= */
 .form {
     
-    width: 360px;
+    width: 450px;
     background: #ffffff;
     padding: 25px;
     border-radius: 10px;
@@ -61,8 +61,7 @@ min-height: 80vh;
 
 /* ================= MESSAGE ================= */
 .message {
-    background: #fee2e2;
-    color: #991b1b;
+
     padding: 8px;
     margin-bottom: 10px;
     border-radius: 6px;

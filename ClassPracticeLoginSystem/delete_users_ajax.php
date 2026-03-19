@@ -53,6 +53,11 @@ foreach ($ids as $id) {
 
     $id = intval($id);
 
+    //  NEVER allow deleting yourself
+    if ($id == $user_id) {
+        continue;
+    }
+
     // Get target user role
     $check = mysqli_query($conn, "SELECT user_type FROM user_form WHERE id='$id'");
     $target = mysqli_fetch_assoc($check);
@@ -61,21 +66,22 @@ foreach ($ids as $id) {
 
     $target_role = $target['user_type'];
 
-    //  NEVER delete owner
+    //  NEVER delete owner (even by owner)
     if ($target_role === 'owner') {
         continue;
     }
 
-    //  ADMIN cannot delete admin
+    // Admin cannot delete admin
     if ($current['user_type'] === 'admin' && $target_role === 'admin') {
         continue;
     }
 
-    // DELETE USER
+    // Owner CAN delete admin + user
+    // Admin CAN delete user only
+
     mysqli_query($conn, "DELETE FROM user_form WHERE id='$id'");
     $deleted++;
 }
-
 // -------------------------
 // RESPONSE
 // -------------------------

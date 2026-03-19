@@ -12,7 +12,7 @@ min-height: 80vh;
 .login-form {
     background: #ffffff;
     padding: 30px 25px;
-    width: 350px;
+    width: 450px;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     text-align: center;
@@ -95,7 +95,7 @@ min-height: 80vh;
 /* ================= SOCIAL BUTTONS ================= */
 .social-btn {
     display: block;
-    width: 200px;
+    width: 250px;
     margin: 8px auto;
     padding: 10px;
     border-radius: 8px;

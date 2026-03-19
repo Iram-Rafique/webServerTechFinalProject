@@ -95,4 +95,5 @@ $facebook_login_url = htmlspecialchars($facebook_login_url);
     </div>
 
 </div>
+<script src="js/register.js"></script>
 <?php include 'templates/footer.php'; ?>

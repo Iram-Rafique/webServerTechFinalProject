@@ -2,7 +2,7 @@
 .update-page {
 
     padding: 40px 20px;
-    background: #f4f6f8;
+ 
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -65,8 +65,7 @@ label {
 
 /* ================= MESSAGE ================= */
 .message {
-    background: #fee2e2;
-    color: #991b1b;
+ 
     padding: 10px;
     border-radius: 6px;
     margin-bottom: 15px;
