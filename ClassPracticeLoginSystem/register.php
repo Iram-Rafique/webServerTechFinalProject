@@ -101,12 +101,16 @@ if(isset($_POST['check'])){
         VALUES 
         ('{$data['name']}','{$data['email']}','{$data['password']}','{$data['image']}','{$data['code']}')");
 
-        if($insert){
-            move_uploaded_file($data['tmp_image'], $image_folder);
-            clearReg();
-            header("Location: login.php");
-            exit();
-        } else {
+     if($insert){
+    move_uploaded_file($data['tmp_image'], $image_folder);
+    clearReg();
+
+    $_SESSION['message'] = ["Registration successful! You can now login."];
+    
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit();
+}
+         else {
             $_SESSION['message'] = ["Database error."];
         }
 
@@ -191,6 +195,7 @@ $showRegister = !$showOTP;
     <input type="file" name="image" class="input reg-file" accept="image/jpg, image/jpeg, image/png">
 
     <input type="submit" name="submit" value="Send OTP" class="btn btn-primary">
+    <p class="login-link">Already have an account? <a href="login.php">Login</a></p>
 </form>
 
 
@@ -220,8 +225,9 @@ $showRegister = !$showOTP;
     <!-- BACK BUTTON -->
    <input type="submit" name="cancel" value="Back to Register" class="btn btn-secondary">
 
-    <p class="login-link">Already have an account? <a href="login.php">Login</a></p>
+<p class="login-link">Already have an account? <a href="login.php">Login</a></p>
 </form>
+    
 </div>
 <script src="js/register.js"></script>
 <?php include 'templates/footer.php'; ?>

@@ -19,25 +19,25 @@ function loadUsers() {
 
                 let disableDelete = "";
 
-// current logged in user id
-let currentUserId = CURRENT_USER_ID;
-let currentUserType = CURRENT_USER_TYPE;
-console.log(currentUserType);
+                // current logged in user id
+                let currentUserId = CURRENT_USER_ID;
+                let currentUserType = CURRENT_USER_TYPE;
+                console.log(currentUserType);
 
-// Admin rules
-if (currentUserType === "admin") {
-    if (user.user_type === "admin" || user.user_type === "owner") {
-        disableDelete = "disabled";
-    }
-}
+                // Admin rules
+                if (currentUserType === "admin") {
+                    if (user.user_type === "admin" || user.user_type === "owner") {
+                        disableDelete = "disabled";
+                    }
+                }
 
-// Owner cannot delete themselves
-if (currentUserType === "owner") {
-    if (user.id == currentUserId) {
-        disableDelete = "disabled";
-    }
-}
-       
+                // Owner cannot delete themselves
+                if (currentUserType === "owner") {
+                    if (user.id == currentUserId) {
+                        disableDelete = "disabled";
+                    }
+                }
+
 
                 table.innerHTML += `
                     <tr id="row-${user.id}">
@@ -60,7 +60,7 @@ if (currentUserType === "owner") {
 }
 
 //  ADD USER
-document.getElementById("addUserForm").addEventListener("submit", function(e) {
+document.getElementById("addUserForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
     let formData = new FormData(this);
@@ -69,16 +69,16 @@ document.getElementById("addUserForm").addEventListener("submit", function(e) {
         method: "POST",
         body: formData
     })
-    .then(res => res.json())
-    .then(data => {
+        .then(res => res.json())
+        .then(data => {
 
-        document.getElementById("message").innerText = data.message;
+            document.getElementById("message").innerText = data.message;
 
-        if (data.status === "success") {
-            loadUsers();
-            this.reset();
-        }
-    });
+            if (data.status === "success") {
+                loadUsers();
+                this.reset();
+            }
+        });
 });
 
 // DELETE SINGLE USER
@@ -91,13 +91,13 @@ function deleteUser(id) {
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({ ids: [id] }) 
+        body: JSON.stringify({ ids: [id] })
     })
-    .then(res => res.json())
-    .then(data => {
-        alert(data.message);
-        loadUsers();
-    });
+        .then(res => res.json())
+        .then(data => {
+            alert(data.message);
+            loadUsers();
+        });
 }
 
 // INITIAL LOAD

@@ -6,6 +6,7 @@
     /* margin-top: 40px; */
     flex-direction: column;
 min-height: 80vh;
+
 }
 
 /* ================= FORM BASE ================= */
@@ -79,7 +80,7 @@ min-height: 80vh;
 
 .login-link a {
     text-decoration: none;
-    color: #223856;
+  
     font-weight: 500;
 }
 
